@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Study Planner</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+.container{
+    width:90%;
+    max-width:800px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 0 25px rgba(0,0,0,0.3);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+input,select{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:none;
+    border-radius:10px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#3b82f6;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#2563eb;
+}
+
+#output{
+    margin-top:20px;
+}
+
+.task{
+    background:rgba(255,255,255,0.1);
+    padding:15px;
+    margin:10px 0;
+    border-radius:10px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📚 AI Study Planner</h1>
+
+    <input type="text" id="subject" placeholder="Enter Subject">
+
+    <select id="level">
+        <option>Beginner</option>
+        <option>Intermediate</option>
+        <option>Advanced</option>
+    </select>
+
+    <button onclick="generatePlan()">Generate Study Plan</button>
+
+    <div id="output"></div>
+</div>
+
+<script>
+function generatePlan(){
+
+    let subject=document.getElementById("subject").value;
+    let level=document.getElementById("level").value;
+    let output=document.getElementById("output");
+
+    if(subject===""){
+        alert("Enter Subject");
+        return;
+    }
+
+    let plan="";
+
+    if(level==="Beginner"){
+        plan=`
+        <div class="task">Week 1: Learn basics of ${subject}</div>
+        <div class="task">Week 2: Practice fundamental concepts</div>
+        <div class="task">Week 3: Build mini project</div>
+        <div class="task">Week 4: Revise and solve problems</div>
+        `;
+    }
+
+    else if(level==="Intermediate"){
+        plan=`
+        <div class="task">Week 1: Review core concepts</div>
+        <div class="task">Week 2: Work on real-world examples</div>
+        <div class="task">Week 3: Build intermediate project</div>
+        <div class="task">Week 4: Mock interviews and revision</div>
+        `;
+    }
+
+    else{
+        plan=`
+        <div class="task">Week 1: Advanced topics in ${subject}</div>
+        <div class="task">Week 2: System design concepts</div>
+        <div class="task">Week 3: Industry-level project</div>
+        <div class="task">Week 4: Portfolio & Interview Prep</div>
+        `;
+    }
+
+    output.innerHTML=`
+    <h2>Your Study Plan for ${subject}</h2>
+    ${plan}
+    `;
+}
+</script>
+
+</body>
+</html>
